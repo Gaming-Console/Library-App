@@ -1,0 +1,205 @@
+.app {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 18px 24px;
+  background: #17324d;
+  color: #fff;
+  overflow-y: auto;
+}
+
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 0 12px 36px;
+  color: #fff;
+  font: 700 36px "Segoe UI", Arial, sans-serif;
+  text-decoration: none;
+}
+
+.brandIcon {
+  padding: 0 10px;
+  border: 2px solid #80c8c7;
+  border-radius: 4px 14px 4px 4px;
+  color: #80c8c7;
+  font-size: 34px;
+}
+
+.brand small {
+  display: block;
+  margin-top: 3px;
+  color: #b9d4dc;
+  font: 12px Arial, sans-serif;
+}
+
+.navLabel {
+  margin: 6px 0 14px;
+  padding: 0 16px;
+  color: #9cb8ca;
+  font-size: 11px;
+}
+
+.sidebar nav {
+  display: grid;
+  gap: 4px;
+}
+
+.sidebar nav a {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 44px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  color: #d9e5eb;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.sidebar nav a:hover {
+  background: #213f5a;
+}
+
+.sidebar nav a[aria-current="page"] {
+  border-inline-start: 3px solid #80c8c7;
+  background: #29516b;
+  color: #fff;
+}
+
+.sidebar a:focus-visible {
+  outline: 3px solid #80c8c7;
+  outline-offset: 2px;
+}
+
+.navSymbol {
+  width: 22px;
+  color: #80c8c7;
+  font-size: 16px;
+  text-align: center;
+}
+
+.librarian {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: auto;
+  padding: 24px 8px 0;
+  border-top: 1px solid #3e566d;
+  font-size: 13px;
+}
+
+.librarian small {
+  display: block;
+  margin-top: 6px;
+  color: #9cb8ca;
+  font-size: 11px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #dceff0;
+  color: #087f83;
+  font-size: 19px;
+}
+
+.workspace {
+  min-width: 0;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 36px;
+  border-bottom: 1px solid #d9e5eb;
+  background: #fff;
+  color: #17324d;
+  font-size: 13px;
+}
+
+.topbar b {
+  margin: 0 12px;
+  color: #b9ccd5;
+}
+
+.localDot {
+  color: #5d7183;
+}
+
+.localDot::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-inline-end: 8px;
+  border-radius: 50%;
+  background: #087f83;
+}
+
+.content {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1100px) {
+  .app {
+    grid-template-columns: 195px minmax(0, 1fr);
+  }
+
+  .sidebar {
+    padding: 26px 12px;
+  }
+}
+
+/* בנייד הסרגל הופך לפס עליון נגלל, כדי שהניווט לא ייעלם. */
+@media (max-width: 700px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    padding: 12px;
+  }
+
+  .brand {
+    padding: 0 4px 12px;
+    font-size: 28px;
+  }
+
+  .navLabel,
+  .librarian {
+    display: none;
+  }
+
+  .sidebar nav {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+  }
+
+  .sidebar nav a {
+    flex: none;
+    padding: 10px 14px;
+  }
+
+  .topbar {
+    padding: 18px;
+    font-size: 11px;
+  }
+}
