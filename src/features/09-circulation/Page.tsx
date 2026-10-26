@@ -21,6 +21,12 @@ function displayDate(value: string) {
   return `${day}.${month}.${year}`;
 }
 
+function addDays(value: string, days: number) {
+  const [year, month, day] = value.split('-').map(Number);
+  const result = new Date(year, month - 1, day + days);
+  return `${result.getFullYear()}-${String(result.getMonth() + 1).padStart(2, '0')}-${String(result.getDate()).padStart(2, '0')}`;
+}
+
 export default function Page() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [barcode, setBarcode] = useState('');
@@ -29,6 +35,7 @@ export default function Page() {
   const [selectedStudentId, setSelectedStudentId] = useState(fallbackStudents[0]?.id ?? '');
   const [borrowedOn, setBorrowedOn] = useState(todayISO());
   const [returnedOn, setReturnedOn] = useState(todayISO());
+  const [loanDays, setLoanDays] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState<{ kind: 'error' | 'success' | 'info'; text: string } | null>(null);
   const [demoState, setDemoState] = useState<'available' | 'borrowed'>('available');
@@ -36,7 +43,19 @@ export default function Page() {
   useEffect(() => {
     inputRef.current?.focus();
     void fetchStudents();
+    void fetchLoanDays();
   }, []);
+
+  async function fetchLoanDays() {
+    try {
+      const response = await fetch('/api/settings');
+      if (!response.ok) throw new Error('No settings API');
+      const settings = await response.json() as { loanDays?: number };
+      if (Number.isInteger(settings.loanDays)) setLoanDays(settings.loanDays as number);
+    } catch {
+      setLoanDays(null);
+    }
+  }
 
   async function fetchStudents() {
     try {
@@ -145,40 +164,7 @@ export default function Page() {
   const activeDemo = demoState === 'borrowed';
 
   return (
-    <div className={styles.appShell}>
-      <aside className={styles.sidebar}>
-        <a className={styles.brand} href="/workshop/mockups.html#03">
-          <b className={styles.brandIcon}>מ</b>
-          <span>מדף<small>ספריית בית הספר</small></span>
-        </a>
-        <span className={styles.navLabel}>מרחב העבודה</span>
-        <nav className={styles.navigation} aria-label="מרחב העבודה">
-          <a href="/workshop/mockups.html#03"><span className={styles.navSymbol}>▤</span>קטלוג ספרים</a>
-          <a href="/workshop/mockups.html#09" aria-current="page"><span className={styles.navSymbol}>⌁</span>עמדת סריקה</a>
-          <a href="/workshop/mockups.html#07"><span className={styles.navSymbol}>♙</span>תלמידות</a>
-          <a href="/workshop/mockups.html#11"><span className={styles.navSymbol}>≡</span>מעקב השאלות</a>
-          <a href="/workshop/mockups.html#02"><span className={styles.navSymbol}>＋</span>קליטת ספרים</a>
-          <a href="/workshop/mockups.html#05"><span className={styles.navSymbol}>▥</span>ברקודים</a>
-          <a href="/workshop/mockups.html#01"><span className={styles.navSymbol}>↓</span>גיבוי ושחזור</a>
-          <a href="/workshop/mockups.html#12"><span className={styles.navSymbol}>⚙</span>הגדרות</a>
-        </nav>
-        <div className={styles.librarian}>
-          <span className={styles.avatar}>ס</span>
-          <div>עמדת הספרנית<small>הכול מתחיל בספר טוב</small></div>
-        </div>
-      </aside>
-
-      <main className={styles.appMain}>
-        <header className={styles.topBar}>
-          <div className={styles.localSummary}>
-            <span>ספריית בית הספר</span>
-            <span className={styles.divider}>/</span>
-            <span>עמדת סריקה — השאלה והחזרה</span>
-          </div>
-          <div className={styles.localMeta}><span className={styles.localDot} />עמדה מקומית · SQLite</div>
-        </header>
-
-        <div className={styles.screen}>
+        <main className={styles.screen}>
         <div className={styles.pageHead}>
           <div>
             <span className={styles.eyebrow}>ליבת העבודה בספרייה</span>
@@ -252,7 +238,8 @@ export default function Page() {
                   </label>
 
                   <div className={styles.callout}>
-                    מועד ההחזרה הצפוי: <b><span className={styles.mono}>09.11.2026</span></b> · לפי מדיניות של 14 ימים
+                    מועד ההחזרה הצפוי: <b><span className={styles.mono}>{loanDays ? displayDate(addDays(borrowedOn, loanDays)) : '—'}</span></b>
+                    {loanDays ? ` · לפי מדיניות של ${loanDays} ימים` : ' · מדיניות ההשאלה לא נטענה'}
                   </div>
                   <button className={styles.primaryBtn} type="button" onClick={() => void handleCheckout()} disabled={busy || !selectedStudent}>
                     אישור השאלה ל{selectedStudent?.fullName ?? 'תלמידה'}
@@ -273,9 +260,6 @@ export default function Page() {
             {feedback.text}
           </div>
         )}
-        </div>
-        <footer className={styles.footer}>נתוני דוגמה בלבד · 26 באוקטובר 2026</footer>
-      </main>
-    </div>
+        </main>
   );
 }
