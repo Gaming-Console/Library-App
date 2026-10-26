@@ -20,17 +20,6 @@ interface BookListResponse {
 
 type Mode = 'new' | 'existing';
 
-const navItems = [
-  { href: '#/03-catalog', icon: '▤', title: 'קטלוג ספרים', current: false },
-  { href: '#/09-circulation', icon: '⌁', title: 'עמדת סריקה', current: false },
-  { href: '#/07-students', icon: '♙', title: 'תלמידות', current: false },
-  { href: '#/11-loans', icon: '≡', title: 'מעקב השאלות', current: false },
-  { href: '#/02-intake', icon: '＋', title: 'קליטת ספרים', current: true },
-  { href: '#/05-labels', icon: '▥', title: 'ברקודים', current: false },
-  { href: '#/01-storage', icon: '↓', title: 'גיבוי ושחזור', current: false },
-  { href: '#/12-settings', icon: '⚙', title: 'הגדרות', current: false },
-];
-
 export default function Page() {
   const [mode, setMode] = useState<Mode>('new');
   const [books, setBooks] = useState<Book[]>([]);
@@ -122,33 +111,6 @@ export default function Page() {
   }
 
   return (
-    <div className={styles.app} dir="rtl">
-      <aside className={styles.sidebar}>
-        <a className={styles.brand} href="#/03-catalog">
-          <b className={styles.brandIcon}>מ</b>
-          <span>מדף<small>ספריית בית הספר</small></span>
-        </a>
-        <span className={styles.navLabel}>מרחב העבודה</span>
-        <nav aria-label="ניווט ראשי" className={styles.nav}>
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href} aria-current={item.current ? 'page' : undefined}>
-              <span className={styles.navSymbol} aria-hidden="true">{item.icon}</span>
-              {item.title}
-            </a>
-          ))}
-        </nav>
-        <div className={styles.librarian}>
-          <span className={styles.avatar} aria-hidden="true">ס</span>
-          <div>עמדת הספרנית<small>הכול מתחיל בספר טוב</small></div>
-        </div>
-      </aside>
-
-      <div className={styles.workspace}>
-        <header className={styles.topbar}>
-          <span>ספריית בית הספר <b aria-hidden="true">/</b> קליטה ידנית ויצירת עותקים</span>
-          <span className={styles.localDot}>עמדה מקומית · SQLite</span>
-        </header>
-
         <main className={styles.screen}>
       <header className={styles.header}>
         <div>
@@ -292,7 +254,5 @@ export default function Page() {
         </section>
       </div>
         </main>
-      </div>
-    </div>
   );
 }
