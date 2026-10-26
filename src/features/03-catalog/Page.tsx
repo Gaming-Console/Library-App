@@ -14,6 +14,9 @@ async function loadCatalog(params: URLSearchParams, signal: AbortSignal): Promis
   return ((await response.json()) as { items: CatalogItem[] }).items;
 }
 
+const copiesLabel = (n: number) => (n === 1 ? 'עותק אחד' : `${n} עותקים`);
+const availableLabel = (n: number) => (n === 1 ? 'עותק אחד זמין' : `${n} עותקים זמינים`);
+
 export default function Page() {
   const [q, setQ] = useState('');
   const [ageGroup, setAgeGroup] = useState('');
@@ -42,29 +45,34 @@ export default function Page() {
     return () => { clearTimeout(timer); controller.abort(); };
   }, [q, ageGroup, availableOnly, attempt]);
 
+  const totalBooks = items.length;
+  const totalCopies = items.reduce((sum, item) => sum + item.totalCopies, 0);
+
   return (
     <main className={styles.page}>
       <header className={styles.header}>
         <div>
-          <a href="#/03-catalog" className={styles.crumb}>קטלוג</a>
-          <h1>קטלוג הספרים</h1>
+          <span className={styles.eyebrow}>הספרים שלנו</span>
+          <h1>מה מחפשות היום?</h1>
+          <p>חיפוש לפי שם, גיל או ברקוד — וזמינות שאפשר לסמוך עליה.</p>
+          <a href="#/03-catalog" className={styles.crumb}>קטלוג הספרים</a>
         </div>
         <nav className={styles.links} aria-label="פעולות קשורות">
-          <a href="#/02-intake">קליטת ספר</a>
-          <a href="#/10-book-import">ייבוא ספרים</a>
-          <a href="#/09-circulation">עמדת סריקה</a>
+          <a href="#/09-circulation" className={styles.secondary}>עמדת סריקה</a>
+          <a href="#/10-book-import" className={styles.secondary}>ייבוא מאקסל</a>
+          <a href="#/02-intake" className={styles.primary}>＋ קליטת ספר</a>
         </nav>
       </header>
 
       <form className={styles.filters} role="search" onSubmit={(event) => event.preventDefault()}>
         <label className={styles.grow}>
-          <span>שם ספר או ברקוד</span>
-          <input type="search" value={q} maxLength={100} onChange={(e) => setQ(e.target.value)} placeholder="למשל: מסע או LIB-000002" />
+          <span className={styles.srOnly}>חיפוש ספרים לפי שם או ברקוד</span>
+          <input type="search" value={q} maxLength={100} onChange={(e) => setQ(e.target.value)} placeholder="חיפוש שם ספר או סריקת ברקוד…" />
         </label>
         <label>
-          <span>גיל</span>
+          <span className={styles.srOnly}>גיל יעד</span>
           <select value={ageGroup} onChange={(e) => setAgeGroup(e.target.value)}>
-            <option value="">כל הגילאים</option>
+            <option value="">כל הגילים</option>
             {ages.map((age) => <option key={age} value={age}>{age}</option>)}
           </select>
         </label>
@@ -83,27 +91,25 @@ export default function Page() {
       )}
       {state === 'ready' && items.length === 0 && <p className={styles.empty}>לא נמצאו ספרים התואמים לחיפוש.</p>}
       {state === 'ready' && items.length > 0 && (
-        <div className={styles.tableWrap}>
-          <table className={styles.table}>
-            <thead>
-              <tr><th>שם הספר</th><th>גיל</th><th>עותקים</th><th>זמינים</th></tr>
-            </thead>
-            <tbody>
-              {items.map(({ book, totalCopies, availableCopies }) => (
-                <tr key={book.id}>
-                  <td><a href={`#/04-book?id=${encodeURIComponent(book.id)}`}>{book.title}</a></td>
-                  <td>{book.ageGroup}</td>
-                  <td>{totalCopies}</td>
-                  <td>
-                    <span className={availableCopies > 0 ? styles.yes : styles.no}>
-                      {availableCopies > 0 ? `${availableCopies} זמינים` : 'אין עותק פנוי'}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <>
+          <p className={styles.summary}>{totalBooks} ספרים בקטלוג · {totalCopies} עותקים</p>
+          <div className={styles.grid}>
+            {items.map(({ book, totalCopies: total, availableCopies }, index) => (
+              <article key={book.id} className={`${styles.card} ${styles[`spine${index % 3}`]}`}>
+                <span className={styles.shelf}>B / {String(index + 1).padStart(3, '0')}</span>
+                <span className={styles.age}>גיל {book.ageGroup}</span>
+                <h2>{book.title}</h2>
+                <div className={styles.counts}>
+                  <span>{copiesLabel(total)}</span>
+                  <span className={availableCopies > 0 ? styles.yes : styles.no}>
+                    {availableCopies > 0 ? availableLabel(availableCopies) : 'כל העותקים מושאלים'}
+                  </span>
+                </div>
+                <a href={`#/04-book?id=${encodeURIComponent(book.id)}`} className={styles.open}>פתיחת כרטיס הספר ←</a>
+              </article>
+            ))}
+          </div>
+        </>
       )}
     </main>
   );
