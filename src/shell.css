@@ -1,0 +1,9 @@
+*{box-sizing:border-box}
+body{margin:0;background:#edf6f7;color:#17324d;font-family:Arial,sans-serif}
+.blank{max-width:760px;margin:15vh auto;padding:32px}
+.blank>span{color:#087f83;font-size:14px}
+.blank h1{font:700 clamp(32px,6vw,56px) "Segoe UI",Arial,sans-serif;margin:20px 0}
+.blank p{color:#5d7183;font-size:18px}
+.blank a{color:#087f83;line-height:2}
+.blank nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:24px}
+a:focus-visible{outline:3px solid #087f83;outline-offset:4px}

@@ -1,0 +1,43 @@
+{
+  "name": "library-workshop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB \"tsx watch server/index.ts\" \"vite --host 127.0.0.1\"",
+    "build": "tsc --noEmit && vite build",
+    "start": "tsx server/index.ts",
+    "data:demo": "tsx scripts/seed-demo.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "kit:generate": "node scripts/generate-kit.mjs",
+    "check:scope": "node scripts/check-scope.mjs",
+    "check:kit": "node scripts/check-kit.mjs"
+  },
+  "dependencies": {
+    "express": "5.1.0",
+    "jsbarcode": "3.12.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "read-excel-file": "5.8.8",
+    "sql.js": "1.13.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/sql.js": "1.4.9",
+    "@types/express": "5.0.1",
+    "@types/node": "22.15.3",
+    "@types/jsbarcode": "3.11.4",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
+    "@vitejs/plugin-react": "4.3.4",
+    "concurrently": "9.1.2",
+    "tsx": "4.19.4",
+    "typescript": "5.7.3",
+    "vite": "6.4.5",
+    "vitest": "3.2.7"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}

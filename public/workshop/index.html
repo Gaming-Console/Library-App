@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>מדף — ערכת הסדנה</title><link rel="stylesheet" href="workshop.css"></head>
+<body>
+  <header class="site-head"><a class="wordmark" href="index.html">מדף<span>סדנת פיתוח משותפת</span></a><nav><a href="mockups.html">הדמיות לצילום ↗</a><a href="../../">לאתר הריק ↗</a></nav></header>
+  <section class="intro"><div><span class="eyebrow">לקוחה אמיתית. צוות אחד. מוצר משותף.</span><h1>היום אנחנו<br>בונות ספרייה.</h1><p>כל אחת אחראית לתהליך שלם — ממשק, התנהגות וחיבור לשרת.<br>האתר מתחיל ריק. ההחלטות המשותפות כבר כתובות.</p></div><div class="loan-ticket"><span class="ticket-label">כרטיס העבודה של הצוות</span><strong>מדף</strong><p>ספריית בית הספר</p><div class="ticket-rule"></div><dl><div><dt>צוות</dt><dd>12 מפתחות</dd></div><div><dt>עמדה</dt><dd>ספרנית אחת</dd></div><div><dt>נתונים</dt><dd>SQLite מקומי</dd></div></dl><img src="barcode.svg" alt="ברקוד לדוגמה LIB-000001"></div></section>
+  <main>
+    <div class="section-head"><div><span class="eyebrow">מתחילות כאן</span><h2>בוחרות אחריות. בונות עד שזה עובד.</h2></div><p>השאלה והחזרה הן מסך אחד.<br>החלוקה היא לפי תהליכי שימוש, לא לפי כפתורים.</p></div>
+    <div class="resources"><button data-guide="FACILITATOR">למנחה ול־Git</button><button data-guide="CONTRACTS">חוזי חיבור ונתונים</button><button data-guide="DESIGN">הנחיות עיצוב</button><a href="samples/books.xlsx" download>אקסל ספרים ↓</a><a href="samples/students.xlsx" download>אקסל תלמידות ↓</a></div>
+    <section id="task-grid" class="task-grid" aria-label="כרטיסי המשימות"></section>
+    <section id="task-detail" class="task-detail" hidden aria-live="polite"></section>
+    <section id="guide" class="guide" hidden></section>
+  </main>
+  <footer>ערכת התחלה — לא מערכת מוכנה · משתמשות בנתונים פיקטיביים בלבד · אין צורך להדפיס בסדנה</footer>
+  <script src="tasks.js"></script><script src="portal.js"></script>
+</body></html>
