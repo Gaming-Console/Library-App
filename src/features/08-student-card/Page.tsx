@@ -1,79 +1,8 @@
 import { useEffect, useState } from 'react';
-import type { ReactNode } from 'react';
 import type { StudentDetails, LoanView } from '../../shared/types';
 import styles from './Page.module.css';
 
 type Tab = 'active' | 'history';
-const navigation = [
-  ['03-catalog', '▤', 'קטלוג ספרים'],
-  ['09-circulation', '⌁', 'עמדת סריקה'],
-  ['07-students', '♙', 'תלמידות'],
-  ['11-loans', '≡', 'מעקב השאלות'],
-  ['02-intake', '＋', 'קליטת ספרים'],
-  ['05-labels', '▥', 'ברקודים'],
-  ['01-storage', '↓', 'גיבוי ושחזור'],
-  ['12-settings', '⚙', 'הגדרות'],
-] as const;
-
-function AppFrame({ children }: { children: ReactNode }) {
-  const [captureToolsVisible, setCaptureToolsVisible] = useState(true);
-  const today = new Intl.DateTimeFormat('he-IL', {
-    day: 'numeric', month: 'long', year: 'numeric',
-  }).format(new Date());
-
-  useEffect(() => {
-    const showCaptureTools = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setCaptureToolsVisible(true);
-    };
-    window.addEventListener('keydown', showCaptureTools);
-    return () => window.removeEventListener('keydown', showCaptureTools);
-  }, []);
-
-  return (
-    <>
-      {captureToolsVisible && (
-        <div className={styles.captureTools}>
-          <a href="/workshop/index.html">← לערכת הסדנה</a>
-          <label>הדמיית משימה
-            <select aria-label="בחירת הדמיה" value="08" disabled>
-              <option value="08">08 · כרטיס תלמידה והשאלותיה</option>
-            </select>
-          </label>
-          <button type="button" onClick={() => setCaptureToolsVisible(false)}>מצב צילום</button>
-          <span>הדמיה חזותית בלבד · לא מערכת עובדת · Esc מחזיר את הכלים</span>
-        </div>
-      )}
-      <div className={`${styles.appShell} ${captureToolsVisible ? '' : styles.captureMode}`}>
-      <aside className={styles.sidebar}>
-        <a className={styles.brand} href="#/03-catalog">
-          <b className={styles.brandIcon}>מ</b>
-          <span><strong>מדף</strong><small>ספריית בית הספר</small></span>
-        </a>
-        <span className={styles.navLabel}>מרחב העבודה</span>
-        <nav className={styles.sideNav} aria-label="מרחב העבודה">
-          {navigation.map(([route, icon, label]) => (
-            <a href={`#/${route}`} key={route}>
-              <span className={styles.navSymbol} aria-hidden="true">{icon}</span>{label}
-            </a>
-          ))}
-        </nav>
-        <div className={styles.librarian}>
-          <span className={styles.librarianAvatar}>ס</span>
-          <div>עמדת הספרנית<small>הכול מתחיל בספר טוב</small></div>
-        </div>
-      </aside>
-      <div className={styles.mainArea}>
-        <header className={styles.topbar}>
-          <span>ספריית בית הספר <b>/</b> כרטיס תלמידה והשאלותיה</span>
-          <span className={styles.localLabel}>עמדה מקומית · SQLite</span>
-        </header>
-        {children}
-        <footer className={styles.footer}>נתוני דוגמה בלבד · {today}</footer>
-      </div>
-      </div>
-    </>
-  );
-}
 
 function localDate() {
   const now = new Date();
@@ -140,8 +69,8 @@ export default function Page() {
     return () => { mounted = false; };
   }, [studentId]);
 
-  if (status === 'loading') return <AppFrame><main className={styles.page} aria-busy="true"><p role="status">טוענת כרטיס תלמידה…</p></main></AppFrame>;
-  if (status === 'error') return <AppFrame><main className={styles.page}><p className={styles.error} role="alert">{error}</p><a href="#/07-students">חזרה לרשימת התלמידות</a></main></AppFrame>;
+  if (status === 'loading') return <main className={styles.page} aria-busy="true"><p role="status">טוענת כרטיס תלמידה…</p></main>;
+  if (status === 'error') return <main className={styles.page}><p className={styles.error} role="alert">{error}</p><a href="#/07-students">חזרה לרשימת התלמידות</a></main>;
   if (!details) return null;
 
   const active = details.loans
@@ -158,7 +87,7 @@ export default function Page() {
   ].join(' · ');
 
   return (
-    <AppFrame>
+    <>
       <main className={styles.page}>
         <header className={styles.pageHead}>
           <div className={styles.headingText}>
@@ -216,6 +145,6 @@ export default function Page() {
           </aside>
         </div>
       </main>
-    </AppFrame>
+    </>
   );
 }
