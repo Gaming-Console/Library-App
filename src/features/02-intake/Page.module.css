@@ -162,6 +162,9 @@
   max-width: 1300px;
   margin: 0 auto;
   padding: 36px;
+  color: #17324d;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .header {
