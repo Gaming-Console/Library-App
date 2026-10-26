@@ -1,5 +1,8 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import type { ComponentType } from 'react';
+import NotBuilt from './shell/NotBuilt';
+import Shell from './shell/Shell';
+import { defaultRoute, parseRoute } from './shell/routes';
 
 const modules = import.meta.glob<{ default: ComponentType }>('./features/*/Page.tsx');
 const pages = Object.fromEntries(Object.entries(modules).map(([path, load]) => [
@@ -7,21 +10,23 @@ const pages = Object.fromEntries(Object.entries(modules).map(([path, load]) => [
 ]));
 
 export default function App() {
-  const [route, setRoute] = useState(location.hash.slice(2));
+  const [hash, setHash] = useState(location.hash);
   useEffect(() => {
-    const change = () => setRoute(location.hash.slice(2));
+    const change = () => setHash(location.hash);
     addEventListener('hashchange', change);
     return () => removeEventListener('hashchange', change);
   }, []);
-  const Page = pages[route.split('?')[0]];
-  if (Page) return <Suspense fallback={<p>טוענת מסך…</p>}><Page key={route} /></Suspense>;
+  const route = parseRoute(hash);
+  useEffect(() => {
+    if (!route) location.replace(`#/${defaultRoute}`);
+  }, [route]);
+  if (!route) return null;
+  const Page = pages[route];
   return (
-    <main className="blank">
-      <span>סדנת הפיתוח · ספריית בית הספר</span>
-      <h1>מתחילות מדף ריק.</h1>
-      <p>אין כאן עדיין מערכת ספרייה. אתן תבנו אותה.</p>
-      <a href="/workshop/index.html">לכרטיסי המשימה ולהדמיות ←</a>
-      {Object.keys(pages).length > 0 && <nav aria-label="מסכים שנבנו">{Object.keys(pages).map((id) => <a key={id} href={`#/${id}`}>{id}</a>)}</nav>}
-    </main>
+    <Shell route={route}>
+      {Page
+        ? <Suspense fallback={<p role="status">טוענת מסך…</p>}><Page key={hash} /></Suspense>
+        : <NotBuilt route={route} />}
+    </Shell>
   );
 }
