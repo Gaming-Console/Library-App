@@ -2,12 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import type { CopyView, Student } from '../../shared/types';
 import styles from './Page.module.css';
 
-const fallbackStudents: Student[] = [
-  { id: 'student-1', schoolId: 'S001', fullName: 'תמר לדוגמה', className: 'ד1' },
-  { id: 'student-2', schoolId: 'S002', fullName: 'נועה לדוגמה', className: 'ה2' },
-  { id: 'student-3', schoolId: 'S003', fullName: 'ליה לדוגמה', className: 'ג1' },
-];
-
 function todayISO() {
   const now = new Date();
   const year = now.getFullYear();
@@ -31,8 +25,9 @@ export default function Page() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [barcode, setBarcode] = useState('');
   const [view, setView] = useState<CopyView | null>(null);
-  const [students, setStudents] = useState<Student[]>(fallbackStudents);
-  const [selectedStudentId, setSelectedStudentId] = useState(fallbackStudents[0]?.id ?? '');
+  const [students, setStudents] = useState<Student[]>([]);
+  const [studentsError, setStudentsError] = useState<string | null>(null);
+  const [selectedStudentId, setSelectedStudentId] = useState('');
   const [borrowedOn, setBorrowedOn] = useState(todayISO());
   const [returnedOn, setReturnedOn] = useState(todayISO());
   const [loanDays, setLoanDays] = useState<number | null>(null);
@@ -60,14 +55,16 @@ export default function Page() {
   async function fetchStudents() {
     try {
       const response = await fetch('/api/students');
-      if (!response.ok) throw new Error('No students API');
+      if (!response.ok) throw new Error('Students request failed');
       const payload = await response.json() as { items?: Student[] };
-      const next = Array.isArray(payload.items) && payload.items.length > 0 ? payload.items : fallbackStudents;
+      const next = Array.isArray(payload.items) ? payload.items : [];
       setStudents(next);
-      if (next[0]) setSelectedStudentId(next[0].id);
+      setStudentsError(null);
+      setSelectedStudentId(next[0]?.id ?? '');
     } catch {
-      setStudents(fallbackStudents);
-      if (fallbackStudents[0]) setSelectedStudentId(fallbackStudents[0].id);
+      setStudents([]);
+      setSelectedStudentId('');
+      setStudentsError('לא ניתן לטעון את רשימת התלמידות, ולכן אי אפשר להשאיל. רענני את הדף ונסי שוב.');
     }
   }
 
@@ -228,14 +225,20 @@ export default function Page() {
                 </>
               ) : (
                 <>
-                  <label className={styles.field}>
-                    <span>למי משאילות?</span>
-                    <select value={selectedStudentId} onChange={(event) => setSelectedStudentId(event.target.value)}>
-                      {students.map((student) => (
-                        <option key={student.id} value={student.id}>{student.fullName} · {student.className} · {student.schoolId}</option>
-                      ))}
-                    </select>
-                  </label>
+                  {studentsError ? (
+                    <p className={styles.notice} role="alert">{studentsError}</p>
+                  ) : students.length === 0 ? (
+                    <p className={styles.notice} role="status">אין עדיין תלמידות במערכת. <a href="#/07-students">להוספת תלמידות</a> או <a href="#/06-student-import">לייבוא מאקסל</a>.</p>
+                  ) : (
+                    <label className={styles.field}>
+                      <span>למי משאילות?</span>
+                      <select value={selectedStudentId} onChange={(event) => setSelectedStudentId(event.target.value)}>
+                        {students.map((student) => (
+                          <option key={student.id} value={student.id}>{student.fullName} · {student.className} · {student.schoolId}</option>
+                        ))}
+                      </select>
+                    </label>
+                  )}
 
                   <div className={styles.callout}>
                     מועד ההחזרה הצפוי: <b><span className={styles.mono}>{loanDays ? displayDate(addDays(borrowedOn, loanDays)) : '—'}</span></b>
