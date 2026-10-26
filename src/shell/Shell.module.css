@@ -15,6 +15,11 @@
   background: #17324d;
   color: #fff;
   overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .brand {
@@ -58,7 +63,6 @@
   display: flex;
   gap: 12px;
   align-items: center;
-  min-height: 44px;
   padding: 12px 16px;
   border-radius: 6px;
   color: #d9e5eb;
@@ -165,37 +169,52 @@
   }
 }
 
-/* בנייד הסרגל הופך לפס עליון נגלל, כדי שהניווט לא ייעלם. */
+/* בחלון צר הסרגל נשאר בצד, רק מצטמצם, כדי שהניווט תמיד יהיה במקום הקבוע. */
 @media (max-width: 700px) {
   .app {
-    grid-template-columns: 1fr;
+    grid-template-columns: 150px minmax(0, 1fr);
   }
 
   .sidebar {
-    position: static;
-    height: auto;
-    padding: 12px;
+    padding: 20px 8px;
   }
 
   .brand {
-    padding: 0 4px 12px;
-    font-size: 28px;
+    gap: 8px;
+    padding: 0 6px 24px;
+    font-size: 26px;
   }
 
-  .navLabel,
-  .librarian {
-    display: none;
+  .brandIcon {
+    padding: 0 7px;
+    font-size: 24px;
   }
 
-  .sidebar nav {
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
+  .navLabel {
+    padding: 0 10px;
   }
 
   .sidebar nav a {
+    gap: 8px;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .navSymbol {
+    width: 18px;
+  }
+
+  .librarian {
+    gap: 8px;
+    padding: 16px 4px 0;
+    font-size: 12px;
+  }
+
+  .avatar {
     flex: none;
-    padding: 10px 14px;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
   }
 
   .topbar {
