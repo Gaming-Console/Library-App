@@ -1,0 +1,214 @@
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px;
+  color: #17324d;
+  font: 16px/1.6 Arial, sans-serif;
+}
+
+.back {
+  color: #087f83;
+  text-decoration: none;
+}
+
+.back:focus-visible,
+.template:focus-visible,
+.fileLabel:focus-within,
+.importButton:focus-visible {
+  outline: 3px solid #087f83;
+  outline-offset: 3px;
+}
+
+.header,
+.previewHead,
+.upload {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.header {
+  margin: 24px 0 32px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #087f83;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.header h1 {
+  margin: 4px 0;
+  font: 700 32px/1.25 "Segoe UI", Arial, sans-serif;
+}
+
+.intro,
+.upload p,
+.previewHead p {
+  margin: 4px 0 0;
+  color: #5d7183;
+}
+
+.template,
+.fileLabel {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d9e5eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #17324d;
+  padding: 8px 16px;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.upload,
+.preview {
+  border: 1px solid #d9e5eb;
+  border-radius: 8px;
+  background: #fff;
+  padding: 20px;
+}
+
+.upload h2,
+.preview h2 {
+  margin: 0;
+  font: 700 20px/1.4 "Segoe UI", Arial, sans-serif;
+}
+
+.fileLabel input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.preview {
+  margin-top: 24px;
+}
+
+.previewHead {
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.importButton {
+  min-height: 44px;
+  border: 0;
+  border-radius: 8px;
+  background: #087f83;
+  color: #fff;
+  padding: 8px 20px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.importButton:disabled {
+  cursor: not-allowed;
+  opacity: .48;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid #d9e5eb;
+  border-radius: 6px;
+}
+
+.tableWrap table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+  text-align: right;
+}
+
+.tableWrap th,
+.tableWrap td {
+  min-height: 52px;
+  border-bottom: 1px solid #d9e5eb;
+  padding: 12px 14px;
+  vertical-align: middle;
+}
+
+.tableWrap th {
+  background: #edf6f7;
+  font-weight: 700;
+}
+
+.tableWrap tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.new,
+.update,
+.rowError {
+  display: inline-block;
+  max-width: 280px;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 14px;
+}
+
+.new {
+  background: #e5f4f1;
+  color: #08665f;
+}
+
+.update {
+  background: #fff5de;
+  color: #8b4b0f;
+}
+
+.rowError,
+.error {
+  background: #fff0ef;
+  color: #b42318;
+}
+
+.notice,
+.error,
+.success {
+  margin: 16px 0 0;
+  border-radius: 6px;
+  padding: 12px 16px;
+}
+
+.notice {
+  background: #edf6f7;
+  color: #17324d;
+}
+
+.success {
+  background: #e5f4f1;
+  color: #08665f;
+}
+
+@media (max-width: 680px) {
+  .page {
+    padding: 16px;
+  }
+
+  .header,
+  .upload,
+  .previewHead {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .header h1 {
+    font-size: 28px;
+  }
+
+  .template,
+  .fileLabel,
+  .importButton {
+    width: 100%;
+  }
+}
