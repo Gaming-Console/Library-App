@@ -1,7 +1,4 @@
 .page {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 32px;
   color: #17324d;
   font: 16px/1.6 Arial, sans-serif;
 }
@@ -192,7 +189,6 @@
 
 @media (max-width: 680px) {
   .page {
-    padding: 16px;
   }
 
   .header,

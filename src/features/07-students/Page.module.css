@@ -1,9 +1,6 @@
 .page {
   display: grid;
   gap: 16px;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 32px;
   color: #17324d;
   font: 16px/1.6 Arial, sans-serif;
 }
@@ -282,7 +279,6 @@
 @media (max-width: 700px) {
   .page {
     gap: 12px;
-    padding: 16px;
   }
 
   .heading {

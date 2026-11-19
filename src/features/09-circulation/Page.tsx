@@ -33,7 +33,6 @@ export default function Page() {
   const [loanDays, setLoanDays] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState<{ kind: 'error' | 'success' | 'info'; text: string } | null>(null);
-  const [demoState, setDemoState] = useState<'available' | 'borrowed'>('available');
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -86,7 +85,6 @@ export default function Page() {
       const nextView = await response.json() as CopyView;
       setView(nextView);
       setBarcode(value);
-      setDemoState(nextView.activeLoan ? 'borrowed' : 'available');
       setFeedback({ kind: 'success', text: nextView.activeLoan ? 'העותק מושאל — אפשר להחזיר אותו.' : 'העותק פנוי — אפשר להשאיל אותו.' });
       setReturnedOn(todayISO());
       if (nextView.activeLoan) {
@@ -120,7 +118,6 @@ export default function Page() {
       setFeedback({ kind: 'success', text: 'ההשאלה נשמרה.' });
       setBarcode('');
       setView(null);
-      setDemoState('available');
       setBorrowedOn(todayISO());
       inputRef.current?.focus();
     } catch (error) {
@@ -147,7 +144,6 @@ export default function Page() {
       setFeedback({ kind: 'success', text: 'ההחזרה נשמרה.' });
       setBarcode('');
       setView(null);
-      setDemoState('available');
       setReturnedOn(todayISO());
       inputRef.current?.focus();
     } catch (error) {
@@ -158,19 +154,13 @@ export default function Page() {
   }
 
   const selectedStudent = students.find((student) => student.id === selectedStudentId) ?? students[0];
-  const activeDemo = demoState === 'borrowed';
 
   return (
         <main className={styles.screen}>
         <div className={styles.pageHead}>
           <div>
-            <span className={styles.eyebrow}>ליבת העבודה בספרייה</span>
-            <h1>סריקה אחת. הפעולה הנכונה.</h1>
-            <p>עותק זמין? משאילות. עותק מושאל? מחזירות. באותה עמדה.</p>
-          </div>
-          <div className={styles.actions}>
-            <button type="button" className={`${styles.demoToggle} ${!activeDemo ? styles.demoActive : ''}`} onClick={() => { setDemoState('available'); setView(null); setBarcode(''); inputRef.current?.focus(); }}>עותק פנוי</button>
-            <button type="button" className={`${styles.demoToggle} ${activeDemo ? styles.demoActive : ''}`} onClick={() => { setDemoState('borrowed'); setView(null); setBarcode(''); inputRef.current?.focus(); }}>עותק מושאל</button>
+            <h1>השאלה והחזרה</h1>
+            <p>סרקי ברקוד של עותק. אם הוא זמין — משאילים אותו, אם הוא מושאל — מחזירים אותו.</p>
           </div>
         </div>
 

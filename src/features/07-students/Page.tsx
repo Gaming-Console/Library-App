@@ -95,13 +95,11 @@ export default function StudentsPage() {
     <main className={styles.page} dir="rtl">
       <div className={styles.heading}>
         <div>
-          <p className={styles.eyebrow}>קהילת הקוראות</p>
-          <h1>התלמידות שלנו</h1>
+          <h1>תלמידות</h1>
           <p className={styles.intro}>חיפוש מהיר ותיקון פרטים — בלי לאבד היסטוריה.</p>
         </div>
         <div className={styles.headingActions}>
           <button className={styles.primary} type="button" onClick={openNewForm}>＋ תלמידה חדשה</button>
-          <a className={styles.secondary} href="#/06-student-import">ייבוא מאקסל</a>
         </div>
       </div>
 

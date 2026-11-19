@@ -1,7 +1,4 @@
 .page {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 48px 32px 32px;
   color: #17324d;
   font-family: Arial, sans-serif;
   font-size: 16px;
@@ -275,7 +272,6 @@
 
 @media (max-width: 720px) {
   .page {
-    padding: 28px 16px 24px;
   }
 
   .header {

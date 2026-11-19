@@ -168,7 +168,7 @@ export default function Page() {
     <main className={styles.page} dir="rtl">
       <div className={styles.head}>
         <div>
-          <a className={styles.eyebrow} href="#/03-catalog" aria-label="מהמסך למדף, חזרה לקטלוג">מהמסך למדף</a>
+          
           <h1>ברקודים ומדבקות</h1>
           <p>בוחרות עותקים, מציגות קודים אמיתיים וסורקות.</p>
         </div>

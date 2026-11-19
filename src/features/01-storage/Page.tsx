@@ -143,11 +143,9 @@ export default function Page() {
     <main className={styles.page} dir="rtl">
       <header className={styles.header}>
         <div>
-          <p className={styles.eyebrow}>המידע של הספרייה</p>
           <h1>גיבוי ושחזור</h1>
           <p className={styles.intro}>שומרות עותק בטוח. בודקות לפני שמחליפות נתונים.</p>
         </div>
-        <a className={styles.catalogLink} href="#/03-catalog">חזרה לקטלוג הספרים ←</a>
       </header>
 
       {loading && <p className={styles.notice} role="status">טוענת את נתוני המאגר…</p>}

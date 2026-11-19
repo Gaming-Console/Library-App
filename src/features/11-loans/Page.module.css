@@ -4,10 +4,6 @@
   --muted: #5d7183;
   --border: #d9e5eb;
   --surface: #fff;
-  max-width: 1280px;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 32px;
   color: var(--ink);
   font-family: "Segoe UI", Arial, sans-serif;
 }
@@ -234,7 +230,6 @@
 
 @media (max-width: 760px) {
   .page {
-    padding: 20px 16px;
   }
 
   .header {

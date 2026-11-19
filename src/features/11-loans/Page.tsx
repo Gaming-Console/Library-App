@@ -80,7 +80,6 @@ export default function Page() {
     <main className={styles.page} dir="rtl">
       <header className={styles.header}>
         <div>
-          <a className={styles.backLink} href="#/03-catalog">חזרה לקטלוג</a>
           <h1>מעקב השאלות</h1>
           <p>רשימת ההשאלות בספרייה</p>
         </div>

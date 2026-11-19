@@ -161,11 +161,9 @@ export default function Page() {
     <main className={styles.page} dir="rtl">
       <div className={styles.header}>
         <div>
-          <span className={styles.eyebrow}>כללים ברורים לכולן</span>
           <h1>מדיניות הספרייה</h1>
           <p>משנות את הכללים מכאן — בלי לערוך קוד.</p>
         </div>
-        <a className={styles.relatedLink} href="#/03-catalog">לקטלוג הספרים ←</a>
       </div>
 
       <div className={styles.layout}>

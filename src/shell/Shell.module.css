@@ -1,224 +1,271 @@
 .app {
   display: grid;
-  grid-template-columns: 230px minmax(0, 1fr);
+  grid-template-columns: 216px minmax(0, 1fr);
   min-height: 100vh;
+}
+
+.skip {
+  position: fixed;
+  inset-block-start: 8px;
+  inset-inline-start: 8px;
+  z-index: 10;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 700;
+  transform: translateY(-200%);
+}
+
+.skip:focus {
+  transform: none;
 }
 
 .sidebar {
   position: sticky;
   top: 0;
   align-self: start;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 32px 18px 24px;
-  background: #17324d;
-  color: #fff;
+  gap: 28px;
+  height: 100vh;
+  padding: 28px 14px 20px;
   overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.sidebar::-webkit-scrollbar {
-  display: none;
+  background: var(--ink);
+  color: #fff;
 }
 
 .brand {
   display: flex;
   gap: 12px;
   align-items: center;
-  padding: 0 12px 36px;
+  padding: 0 10px;
   color: #fff;
-  font: 700 36px "Segoe UI", Arial, sans-serif;
+  font: 700 28px/1.1 "Segoe UI", Arial, sans-serif;
   text-decoration: none;
 }
 
 .brandIcon {
-  padding: 0 10px;
-  border: 2px solid #80c8c7;
-  border-radius: 4px 14px 4px 4px;
-  color: #80c8c7;
-  font-size: 34px;
-}
-
-.brand small {
-  display: block;
-  margin-top: 3px;
-  color: #b9d4dc;
-  font: 12px Arial, sans-serif;
-}
-
-.navLabel {
-  margin: 6px 0 14px;
-  padding: 0 16px;
-  color: #9cb8ca;
-  font-size: 11px;
-}
-
-.sidebar nav {
-  display: grid;
-  gap: 4px;
-}
-
-.sidebar nav a {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  padding: 12px 16px;
-  border-radius: 6px;
-  color: #d9e5eb;
-  font-size: 14px;
-  text-decoration: none;
-}
-
-.sidebar nav a:hover {
-  background: #213f5a;
-}
-
-.sidebar nav a[aria-current="page"] {
-  border-inline-start: 3px solid #80c8c7;
-  background: #29516b;
-  color: #fff;
-}
-
-.sidebar a:focus-visible {
-  outline: 3px solid #80c8c7;
-  outline-offset: 2px;
-}
-
-.navSymbol {
-  width: 22px;
-  color: #80c8c7;
-  font-size: 16px;
-  text-align: center;
-}
-
-.librarian {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-top: auto;
-  padding: 24px 8px 0;
-  border-top: 1px solid #3e566d;
-  font-size: 13px;
-}
-
-.librarian small {
-  display: block;
-  margin-top: 6px;
-  color: #9cb8ca;
-  font-size: 11px;
-}
-
-.avatar {
   display: grid;
   place-items: center;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background: #dceff0;
-  color: #087f83;
-  font-size: 19px;
+  border: 2px solid var(--mint);
+  border-radius: 4px 14px 4px 4px;
+  color: var(--mint);
+  font-size: 24px;
+}
+
+.brand small {
+  display: block;
+  margin-top: 4px;
+  color: #b9d4dc;
+  font: 12px Arial, sans-serif;
+}
+
+.nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav a {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 10px;
+  color: #d9e5eb;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.nav a svg {
+  flex: none;
+  color: var(--mint);
+}
+
+.nav a:hover {
+  background: #213f5a;
+}
+
+.nav a[aria-current='page'] {
+  background: #29516b;
+  box-shadow: inset -3px 0 0 var(--mint);
+  color: #fff;
+  font-weight: 700;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.footer {
+  display: grid;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #3e566d;
+}
+
+.zoom {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid #3e566d;
+  border-radius: 10px;
+  background: transparent;
+  color: #d9e5eb;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.zoom:hover,
+.zoom[aria-pressed='true'] {
+  background: #213f5a;
+}
+
+.zoom svg {
+  color: var(--mint);
+}
+
+.local {
+  margin: 0;
+  padding: 0 4px;
+  color: #b9d4dc;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .workspace {
   min-width: 0;
 }
 
-.topbar {
+.tabs {
+  position: sticky;
+  top: 0;
+  z-index: 5;
   display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 24px 36px;
-  border-bottom: 1px solid #d9e5eb;
+  gap: 4px;
+  padding: 0 32px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--line);
   background: #fff;
-  color: #17324d;
-  font-size: 13px;
 }
 
-.topbar b {
-  margin: 0 12px;
-  color: #b9ccd5;
+.tabs a {
+  flex: none;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  padding: 0 18px;
+  border-bottom: 3px solid transparent;
+  color: var(--muted);
+  font-size: 16px;
+  text-decoration: none;
 }
 
-.localDot {
-  color: #5d7183;
+.tabs a:hover {
+  color: var(--ink);
 }
 
-.localDot::before {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-inline-end: 8px;
-  border-radius: 50%;
-  background: #087f83;
+.tabs a[aria-current='page'] {
+  border-bottom-color: var(--teal);
+  color: var(--ink);
+  font-weight: 700;
 }
 
 .content {
-  max-width: 1300px;
+  max-width: 1240px;
   margin: 0 auto;
+  padding: 32px;
 }
 
-@media (max-width: 1100px) {
+.content:focus,
+.content:focus-visible {
+  outline: none;
+}
+
+.large {
+  zoom: 1.18;
+}
+
+@media (max-width: 1000px) {
   .app {
-    grid-template-columns: 195px minmax(0, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .sidebar {
-    padding: 26px 12px;
-  }
-}
-
-/* בחלון צר הסרגל נשאר בצד, רק מצטמצם, כדי שהניווט תמיד יהיה במקום הקבוע. */
-@media (max-width: 700px) {
-  .app {
-    grid-template-columns: 150px minmax(0, 1fr);
-  }
-
-  .sidebar {
-    padding: 20px 8px;
+    position: static;
+    flex-flow: row wrap;
+    gap: 8px 16px;
+    align-items: center;
+    height: auto;
+    padding: 12px 16px;
   }
 
   .brand {
-    gap: 8px;
-    padding: 0 6px 24px;
-    font-size: 26px;
+    padding: 0;
+    font-size: 22px;
   }
 
-  .brandIcon {
-    padding: 0 7px;
-    font-size: 24px;
+  .brand small,
+  .local,
+  .zoom span {
+    display: none;
   }
 
-  .navLabel {
-    padding: 0 10px;
+  .nav {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
-  .sidebar nav a {
-    gap: 8px;
-    padding: 10px;
-    font-size: 13px;
+  .nav a {
+    min-height: 44px;
+    padding: 0 12px;
   }
 
-  .navSymbol {
-    width: 18px;
+  .spacer {
+    display: none;
   }
 
-  .librarian {
-    gap: 8px;
-    padding: 16px 4px 0;
-    font-size: 12px;
+  .footer {
+    padding: 0;
+    border: 0;
   }
 
-  .avatar {
-    flex: none;
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
+  .zoom {
+    padding: 0 12px;
   }
 
-  .topbar {
-    padding: 18px;
-    font-size: 11px;
+  .tabs {
+    padding: 0 12px;
+  }
+
+  .content {
+    padding: 20px 16px;
+  }
+}
+
+@media print {
+  .sidebar,
+  .tabs,
+  .skip {
+    display: none;
+  }
+
+  .app {
+    display: block;
+  }
+
+  .content {
+    max-width: none;
+    padding: 0;
+    zoom: 1;
   }
 }

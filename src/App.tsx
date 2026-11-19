@@ -25,8 +25,8 @@ export default function App() {
   return (
     <Shell route={route}>
       {Page
-        ? <Suspense fallback={<p role="status">טוענת מסך…</p>}><Page key={hash} /></Suspense>
-        : <NotBuilt route={route} />}
+        ? <Suspense fallback={<p role="status">טוען…</p>}><Page key={hash} /></Suspense>
+        : <NotBuilt />}
     </Shell>
   );
 }

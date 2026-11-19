@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "kit:generate": "node scripts/generate-kit.mjs",
     "check:scope": "node scripts/check-scope.mjs",
-    "check:kit": "node scripts/check-kit.mjs"
+    "check:kit": "node scripts/check-kit.mjs",
+    "app": "node scripts/launch.mjs"
   },
   "dependencies": {
     "express": "5.1.0",

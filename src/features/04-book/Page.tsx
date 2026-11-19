@@ -91,7 +91,7 @@ export default function Page() {
     return (
       <main className={styles.page}><div className={styles.inner}>
         <div className={styles.head}><div>
-          <span className={styles.eyebrow}><a href="#/03-catalog">קטלוג</a> / כרטיס ספר</span>
+          <a className={styles.eyebrow} href="#/03-catalog">← לקטלוג</a>
           <h1 className={styles.title}>הספר לא נמצא</h1>
         </div></div>
         <section className={styles.panel}>
@@ -107,7 +107,7 @@ export default function Page() {
     return (
       <main className={styles.page}><div className={styles.inner}>
         <div className={styles.head}><div>
-          <span className={styles.eyebrow}><a href="#/03-catalog">קטלוג</a> / כרטיס ספר</span>
+          <a className={styles.eyebrow} href="#/03-catalog">← לקטלוג</a>
           <h1 className={styles.title}>כרטיס ספר</h1>
         </div></div>
         <section className={styles.panel}>
@@ -125,7 +125,7 @@ export default function Page() {
       <div className={styles.inner}>
       <div className={styles.head}>
         <div>
-          <span className={styles.eyebrow}><a href="#/03-catalog">קטלוג</a> / כרטיס ספר</span>
+          <a className={styles.eyebrow} href="#/03-catalog">← לקטלוג</a>
           <h1 className={styles.title}>{book.title}</h1>
           <p className={styles.lead}>כל העותקים של הספר, במקום אחד.</p>
         </div>

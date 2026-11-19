@@ -114,11 +114,9 @@ export default function Page() {
         <main className={styles.screen}>
       <header className={styles.header}>
         <div>
-          <p className={styles.eyebrow}>מוסיפות למדפים</p>
-          <h1>קליטה ידנית של ספרים</h1>
+          <h1>הוספת ספר</h1>
           <p>ספר אחד, כמה עותקים — לכל עותק קוד משלו.</p>
         </div>
-        <a className={styles.importLink} href="#/10-book-import">ייבוא מאקסל ↗</a>
       </header>
 
       <div className={styles.layout}>

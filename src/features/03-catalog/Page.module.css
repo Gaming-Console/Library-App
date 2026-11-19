@@ -1,4 +1,4 @@
-.page { direction: rtl; max-width: 1100px; margin: 0 auto; padding: 36px; min-height: 100vh; box-sizing: border-box; background: #edf6f7; color: #17324d; font: 16px/1.6 Arial, sans-serif; }
+.page { direction: rtl; box-sizing: border-box; color: #17324d; font: 16px/1.6 Arial, sans-serif; }
 .header { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
 .eyebrow { color: #087f83; font-size: 12px; font-weight: 700; }
 .header h1 { margin: 7px 0 8px; font: 700 32px "Segoe UI", Arial, sans-serif; letter-spacing: -0.6px; }

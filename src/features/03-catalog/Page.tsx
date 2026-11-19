@@ -52,16 +52,9 @@ export default function Page() {
     <main className={styles.page}>
       <header className={styles.header}>
         <div>
-          <span className={styles.eyebrow}>הספרים שלנו</span>
-          <h1>מה מחפשות היום?</h1>
-          <p>חיפוש לפי שם, גיל או ברקוד — וזמינות שאפשר לסמוך עליה.</p>
-          <a href="#/03-catalog" className={styles.crumb}>קטלוג הספרים</a>
+          <h1>קטלוג הספרים</h1>
+          <p>חיפוש לפי שם, גיל או ברקוד, עם זמינות עדכנית.</p>
         </div>
-        <nav className={styles.links} aria-label="פעולות קשורות">
-          <a href="#/09-circulation" className={styles.secondary}>עמדת סריקה</a>
-          <a href="#/10-book-import" className={styles.secondary}>ייבוא מאקסל</a>
-          <a href="#/02-intake" className={styles.primary}>＋ קליטת ספר</a>
-        </nav>
       </header>
 
       <form className={styles.filters} role="search" onSubmit={(event) => event.preventDefault()}>
@@ -96,7 +89,6 @@ export default function Page() {
           <div className={styles.grid}>
             {items.map(({ book, totalCopies: total, availableCopies }, index) => (
               <article key={book.id} className={`${styles.card} ${styles[`spine${index % 3}`]}`}>
-                <span className={styles.shelf}>B / {String(index + 1).padStart(3, '0')}</span>
                 <span className={styles.age}>גיל {book.ageGroup}</span>
                 <h2>{book.title}</h2>
                 <div className={styles.counts}>

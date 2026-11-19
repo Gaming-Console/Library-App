@@ -1,7 +1,4 @@
 .page {
-  max-width: 1300px;
-  margin: auto;
-  padding: 48px 36px 36px;
   color: #17324d;
   font: 16px Arial, sans-serif;
 }
@@ -216,7 +213,6 @@
 
 @media (max-width: 900px) {
   .page {
-    padding: 24px;
   }
 
   .split {
@@ -226,7 +222,6 @@
 
 @media (max-width: 600px) {
   .page {
-    padding: 18px;
   }
 
   .head {

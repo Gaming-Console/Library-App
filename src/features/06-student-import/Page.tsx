@@ -129,14 +129,12 @@ export default function Page() {
 
   return (
     <main className={styles.page} dir="rtl">
-      <a className={styles.back} href="#/03-catalog">חזרה לקטלוג</a>
       <header className={styles.header}>
         <div>
-          <p className={styles.eyebrow}>ייבוא מרוכז</p>
           <h1>ייבוא תלמידות</h1>
           <p className={styles.intro}>בדקי את השורות ואת השינויים לפני שמירה.</p>
         </div>
-        <a className={styles.template} href="/workshop/samples/students.xlsx" download>הורדת תבנית xlsx</a>
+        <a className={styles.template} href="/templates/students.xlsx" download>הורדת תבנית xlsx</a>
       </header>
 
       <section className={styles.upload} aria-labelledby="upload-title">

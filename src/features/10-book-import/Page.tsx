@@ -128,13 +128,11 @@ export default function Page() {
     <main className={styles.page}>
       <header className={styles.header}>
         <div>
-          <p className={styles.eyebrow}>קליטה מרוכזת</p>
-          <h1>מאקסל אל מדפי הספרייה</h1>
+          <h1>ייבוא ספרים מאקסל</h1>
           <p className={styles.intro}>ייבוא ספרים וכמויות, עם בדיקת התאמות לפני יצירת העותקים.</p>
         </div>
         <nav className={styles.headerLinks} aria-label="קישורים קשורים">
-          <a className={styles.catalogLink} href="#/03-catalog">מעבר לקטלוג הספרים</a>
-          <a className={styles.templateLink} href="/workshop/samples/books.xlsx" download>
+          <a className={styles.templateLink} href="/templates/books.xlsx" download>
             <span aria-hidden="true">↓</span> הורדת תבנית Excel
           </a>
         </nav>
