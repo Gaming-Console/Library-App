@@ -141,7 +141,7 @@ export default function Page() {
         <div className={styles.stamp}>{book.title}</div>
         <div>
           <h2>{book.title}</h2>
-          <p className={styles.muted}>גיל יעד {book.ageGroup} · <span className={styles.mono}>{book.id}</span></p>
+          <p className={styles.muted}>גיל יעד {book.ageGroup}</p>
           <div className={styles.actions}>
             <span className={`${styles.pill} ${styles.neutral}`}>{copies.length === 1 ? 'עותק אחד' : `${copies.length} עותקים`}</span>
             <span className={styles.pill}>{availableText(availableCount)}</span>
