@@ -1,6 +1,6 @@
 .page {
   direction: rtl;
-  color: #17324d;
+  color: #1a2b45;
   font: 16px/1.6 Arial, sans-serif;
 }
 
@@ -22,7 +22,7 @@
 
 .eyebrow {
   margin: 0 0 4px;
-  color: #087f83;
+  color: #1f4a7d;
   font-size: 14px;
   font-weight: 700;
 }
@@ -35,7 +35,7 @@
 .intro,
 .fieldHint,
 .muted {
-  color: #5d7183;
+  color: #5e5647;
 }
 
 .intro {
@@ -45,7 +45,7 @@
 .templateLink,
 .catalogLink,
 .success a {
-  color: #087f83;
+  color: #1f4a7d;
   font-weight: 700;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -67,7 +67,7 @@
   margin-top: 20px;
   padding: 24px;
   background: #fff;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 8px;
 }
 
@@ -84,7 +84,7 @@
 .rowCount {
   max-width: 45%;
   overflow-wrap: anywhere;
-  color: #5d7183;
+  color: #5e5647;
   font-size: 14px;
 }
 
@@ -103,7 +103,7 @@
   border: 1px solid #b9cbd5;
   border-radius: 4px;
   background: #fff;
-  color: #17324d;
+  color: #1a2b45;
   font: inherit;
 }
 
@@ -113,7 +113,7 @@
 .actions button:focus-visible,
 .templateLink:focus-visible,
 .success a:focus-visible {
-  outline: 3px solid #087f83;
+  outline: 3px solid #1f4a7d;
   outline-offset: 2px;
 }
 
@@ -150,7 +150,7 @@
 .tableWrap {
   width: 100%;
   overflow-x: auto;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 4px;
 }
 
@@ -164,12 +164,12 @@
 .tableWrap th,
 .tableWrap td {
   padding: 12px;
-  border-bottom: 1px solid #d9e5eb;
+  border-bottom: 1px solid #e7dcc8;
   vertical-align: top;
 }
 
 .tableWrap th {
-  background: #edf6f7;
+  background: #faf6ee;
   font-size: 14px;
 }
 
@@ -198,8 +198,8 @@
 .newBook {
   display: inline-block;
   padding: 4px 8px;
-  border-right: 3px solid #087f83;
-  background: #edf6f7;
+  border-right: 3px solid #1f4a7d;
+  background: #faf6ee;
 }
 
 .summary {
@@ -209,7 +209,7 @@
 }
 
 .summary strong {
-  color: #17324d;
+  color: #1a2b45;
   font-size: 20px;
 }
 
@@ -238,7 +238,7 @@
   height: 20px;
   flex: 0 0 auto;
   margin: 3px 0 0;
-  accent-color: #087f83;
+  accent-color: #1f4a7d;
 }
 
 .actions {
@@ -249,9 +249,9 @@
 .actions button {
   min-height: 46px;
   padding: 9px 18px;
-  border: 1px solid #087f83;
+  border: 1px solid #1f4a7d;
   border-radius: 4px;
-  background: #087f83;
+  background: #1f4a7d;
   color: #fff;
   font: 700 16px/1.4 Arial, sans-serif;
   cursor: pointer;
@@ -259,8 +259,8 @@
 
 .actions button:disabled {
   border-color: #a8b9c2;
-  background: #dce5e9;
-  color: #5d7183;
+  background: #e3d7c0;
+  color: #5e5647;
   cursor: not-allowed;
 }
 
@@ -269,7 +269,7 @@
   padding: 14px 16px;
   border: 1px solid #9bc8b6;
   border-radius: 4px;
-  background: #eef8f2;
+  background: #eef3fa;
   color: #214b3a;
 }
 

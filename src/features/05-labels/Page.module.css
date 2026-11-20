@@ -1,5 +1,5 @@
 .page {
-  color: #17324d;
+  color: #1a2b45;
   font: 16px Arial, sans-serif;
 }
 
@@ -18,7 +18,7 @@
 .page a:focus-visible,
 .page input:focus-visible,
 .page select:focus-visible {
-  outline: 3px solid #087f83;
+  outline: 3px solid #1f4a7d;
   outline-offset: 4px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .eyebrow {
-  color: #087f83;
+  color: #1f4a7d;
   font-size: 12px;
   font-weight: 700;
   text-decoration: none;
@@ -45,7 +45,7 @@
 
 .head p {
   margin: 0;
-  color: #5d7183;
+  color: #5e5647;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -59,7 +59,7 @@
   padding: 12px 20px;
   border: 0;
   border-radius: 6px;
-  background: #087f83;
+  background: #1f4a7d;
   color: #fff;
   font-size: 14px;
   text-decoration: none;
@@ -72,9 +72,9 @@
 }
 
 .secondary {
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   background: #fff;
-  color: #17324d;
+  color: #1a2b45;
 }
 
 .split {
@@ -85,7 +85,7 @@
 
 .panel {
   padding: 26px;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 12px;
   background: #fff;
 }
@@ -101,7 +101,7 @@
 
 .muted {
   margin: 13px 0;
-  color: #5d7183;
+  color: #5e5647;
   font-size: 13px;
   line-height: 1.7;
 }
@@ -118,10 +118,10 @@
   width: 100%;
   min-height: 46px;
   padding: 12px;
-  border: 1px solid #c7d9e1;
+  border: 1px solid #d8c9ad;
   border-radius: 6px;
   background: #fff;
-  color: #17324d;
+  color: #1a2b45;
 }
 
 .item {
@@ -129,14 +129,14 @@
   justify-content: space-between;
   gap: 16px;
   padding: 18px 0;
-  border-bottom: 1px solid #d9e5eb;
+  border-bottom: 1px solid #e7dcc8;
   font-size: 14px;
 }
 
 .item small {
   display: block;
   margin-top: 6px;
-  color: #5d7183;
+  color: #5e5647;
   font: 12px Consolas, monospace;
 }
 
@@ -152,8 +152,8 @@
   display: inline-block;
   padding: 5px 10px;
   border-radius: 5px;
-  background: #e5f3f1;
-  color: #076b66;
+  background: #e8eff8;
+  color: #16385f;
   font-size: 12px;
   white-space: nowrap;
 }
@@ -166,12 +166,12 @@
 .preview {
   padding: 28px;
   border-radius: 12px;
-  background: #e3ecef;
+  background: #f1e9d6;
 }
 
 .label {
   padding: 24px;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 7px;
   background: #fff;
   text-align: center;
@@ -184,7 +184,7 @@
 }
 
 .label > small {
-  color: #5d7183;
+  color: #5e5647;
   font-size: 12px;
 }
 
@@ -203,7 +203,7 @@
 }
 
 .success {
-  color: #076b66;
+  color: #16385f;
 }
 
 .warning {

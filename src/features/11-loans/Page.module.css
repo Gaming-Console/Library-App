@@ -1,8 +1,8 @@
 .page {
-  --ink: #17324d;
-  --teal: #087f83;
-  --muted: #5d7183;
-  --border: #d9e5eb;
+  --ink: #1a2b45;
+  --teal: #1f4a7d;
+  --muted: #5e5647;
+  --border: #e7dcc8;
   --surface: #fff;
   color: var(--ink);
   font-family: "Segoe UI", Arial, sans-serif;
@@ -87,7 +87,7 @@
   width: 100%;
   min-height: 44px;
   padding: 8px 12px;
-  border: 1px solid #b8c9d3;
+  border: 1px solid #d8c9ad;
   border-radius: 6px;
   background: var(--surface);
   color: var(--ink);
@@ -102,7 +102,7 @@
   display: flex;
   min-height: 44px;
   padding: 3px;
-  border: 1px solid #b8c9d3;
+  border: 1px solid #d8c9ad;
   border-radius: 6px;
   background: var(--surface);
 }
@@ -119,7 +119,7 @@
 }
 
 .segmented button[aria-pressed="true"] {
-  background: #dff1f0;
+  background: #e8eff8;
   color: #075f62;
 }
 
@@ -140,7 +140,7 @@
 .tableRegion th {
   height: 48px;
   padding: 0 16px;
-  background: #e8f1f3;
+  background: #f5eee0;
   color: #304d63;
   font-size: 14px;
   font-weight: 700;
@@ -150,7 +150,7 @@
 .tableRegion td {
   height: 58px;
   padding: 8px 16px;
-  border-top: 1px solid #e6edf0;
+  border-top: 1px solid #f3ecdc;
   color: var(--ink);
   font-size: 15px;
   white-space: nowrap;
@@ -179,7 +179,7 @@
 }
 
 .active {
-  background: #e2f3ed;
+  background: #e8eff8;
   color: #23634d;
 }
 
@@ -189,7 +189,7 @@
 }
 
 .returned {
-  background: #edf1f3;
+  background: #f5eee0;
   color: #526878;
 }
 

@@ -1,6 +1,6 @@
 .navSymbol{
   width: 22px;
-  color: #80c8c7;
+  color: #e3b15c;
   font-size: 16px;
   text-align: center;
 }
@@ -8,7 +8,7 @@
   min-width: 0;
 }
 .screen{
-  color: #17324d;
+  color: #1a2b45;
   font-size: 16px;
   line-height: 1.6;
 }
@@ -21,7 +21,7 @@
 }
 .eyebrow{
   margin: 0;
-  color: #087f83;
+  color: #1f4a7d;
   font-size: 14px;
   font-weight: 700;
 }
@@ -33,10 +33,10 @@
 }
 .header > div > p:last-child{
   margin: 0;
-  color: #5d7183;
+  color: #5e5647;
 }
 .importLink,.secondaryLink{
-  color: #17324d;
+  color: #1a2b45;
   text-decoration: none;
 }
 .importLink{
@@ -44,13 +44,13 @@
   min-height: 44px;
   align-items: center;
   padding: 8px 18px;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 7px;
   background: #fff;
   font-size: 14px;
 }
 .importLink:hover{
-  border-color: #087f83;
+  border-color: #1f4a7d;
 }
 .layout{
   display: grid;
@@ -61,7 +61,7 @@
 .card{
   min-width: 0;
   padding: 26px;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 12px;
   background: #fff;
 }
@@ -69,7 +69,7 @@
   display: flex;
   gap: 28px;
   margin-bottom: 18px;
-  border-bottom: 1px solid #d9e5eb;
+  border-bottom: 1px solid #e7dcc8;
 }
 .tabs button{
   min-height: 38px;
@@ -77,14 +77,14 @@
   border: 0;
   border-bottom: 3px solid transparent;
   background: transparent;
-  color: #5d7183;
+  color: #5e5647;
   cursor: pointer;
   font: inherit;
   font-size: 14px;
 }
 .tabs .activeTab{
-  border-bottom-color: #087f83;
-  color: #087f83;
+  border-bottom-color: #1f4a7d;
+  color: #1f4a7d;
   font-weight: 700;
 }
 .formGrid{
@@ -104,10 +104,10 @@
   width: 100%;
   min-height: 46px;
   padding: 8px 12px;
-  border: 1px solid #c7d9e1;
+  border: 1px solid #d8c9ad;
   border-radius: 6px;
   background: #fff;
-  color: #17324d;
+  color: #1a2b45;
   font: inherit;
   font-weight: 400;
 }
@@ -124,7 +124,7 @@
   font-weight: 400;
 }
 .hint{
-  color: #5d7183;
+  color: #5e5647;
   font-size: 14px;
   font-weight: 400;
 }
@@ -134,20 +134,20 @@
   gap: 4px;
   margin: -8px 0 20px;
   padding: 12px 16px;
-  border-right: 3px solid #087f83;
-  background: #f3f8f9;
+  border-right: 3px solid #1f4a7d;
+  background: #fbf7ef;
 }
 .selectedBook > span{
-  color: #5d7183;
+  color: #5e5647;
   font-size: 14px;
 }
 .notice{
   margin: 4px 0 24px;
   padding: 16px;
-  border: 1px solid #d6e9e9;
+  border: 1px solid #eadfc9;
   border-radius: 7px;
-  background: #edf6f7;
-  color: #5d7183;
+  background: #faf6ee;
+  color: #5e5647;
   font-size: 13px;
   line-height: 1.8;
 }
@@ -163,7 +163,7 @@
   padding: 8px 18px;
   border: 0;
   border-radius: 6px;
-  background: #087f83;
+  background: #1f4a7d;
   color: #fff;
   cursor: pointer;
   font: inherit;
@@ -188,10 +188,10 @@
   font-size: 20px;
 }
 .card > p{
-  color: #5d7183;
+  color: #5e5647;
 }
 .asideHint{
-  color: #5d7183;
+  color: #5e5647;
   font-size: 14px;
   line-height: 1.7;
 }
@@ -204,10 +204,10 @@
   margin: 10px 0 16px;
   padding: 12px;
   overflow-wrap: anywhere;
-  border-inline-start: 6px solid #087f83;
+  border-inline-start: 6px solid #1f4a7d;
   border-radius: 3px 8px 8px 3px;
-  background: #dceff0;
-  color: #17324d;
+  background: #e8eff8;
+  color: #1a2b45;
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 17px;
   font-weight: 700;
@@ -216,7 +216,7 @@
 .rule{
   margin: 16px 0;
   border: 0;
-  border-top: 1px solid #d9e5eb;
+  border-top: 1px solid #e7dcc8;
 }
 .bookDetail{
   display: flex;
@@ -225,7 +225,7 @@
   font-size: 14px;
 }
 .bookDetail strong{
-  color: #17324d;
+  color: #1a2b45;
 }
 .success > p{
   margin: 8px 0;
@@ -239,13 +239,13 @@
 }
 .barcodeList li{
   padding: 8px 12px;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 6px;
-  background: #f8fbfc;
+  background: #fdfaf4;
   text-align: left;
 }
 .barcodeList code{
-  color: #17324d;
+  color: #1a2b45;
   font-family: Consolas, monospace;
   font-size: 16px;
 }

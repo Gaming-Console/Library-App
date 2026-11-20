@@ -1,5 +1,5 @@
 .page {
-  color: #17324d;
+  color: #1a2b45;
   line-height: 1.6;
 }
 
@@ -17,7 +17,7 @@
 
 .eyebrow {
   margin: 0;
-  color: #087f83;
+  color: #1f4a7d;
   font-size: 12px;
   font-weight: 700;
 }
@@ -29,7 +29,7 @@
 
 .subtitle {
   margin: 0;
-  color: #5d7183;
+  color: #5e5647;
   font-size: 14px;
   line-height: 1.7;
 }
@@ -44,7 +44,7 @@
 .panel {
   min-width: 0;
   padding: 26px;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 12px;
   background: #fff;
 }
@@ -63,8 +63,8 @@
   aspect-ratio: 1;
   place-items: center;
   border-radius: 50%;
-  background: #dff0f1;
-  color: #087f83;
+  background: #e8eff8;
+  color: #1f4a7d;
   font: 700 28px "Segoe UI", Arial, sans-serif;
 }
 
@@ -83,7 +83,7 @@
   display: flex;
   height: 44px;
   margin-bottom: 20px;
-  border-bottom: 1px solid #d9e5eb;
+  border-bottom: 1px solid #e7dcc8;
 }
 
 .panelTabs button {
@@ -93,19 +93,19 @@
   border: 0;
   border-bottom: 3px solid transparent;
   background: transparent;
-  color: #5d7183;
+  color: #5e5647;
   font: inherit;
 }
 
 .panelTabs button[aria-selected="true"] {
-  border-bottom-color: #087f83;
-  color: #087f83;
+  border-bottom-color: #1f4a7d;
+  color: #1f4a7d;
   font-weight: 700;
 }
 
 .panelTabs button span {
   margin-inline-start: 5px;
-  color: #5d7183;
+  color: #5e5647;
   font-variant-numeric: tabular-nums;
 }
 
@@ -126,8 +126,8 @@
 .loanTable th {
   height: 43px;
   padding: 14px 16px;
-  background: #f6f9fb;
-  color: #5d7183;
+  background: #fbf7ef;
+  color: #5e5647;
   font-size: 12px;
   font-weight: 400;
   white-space: nowrap;
@@ -155,7 +155,7 @@
 }
 
 .loanTable td a {
-  color: #087f83;
+  color: #1f4a7d;
   font-weight: 400;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -183,8 +183,8 @@
   display: inline-block;
   padding: 5px 10px;
   border-radius: 5px;
-  background: #e5eaf0;
-  color: #17324d;
+  background: #f3ecdc;
+  color: #1a2b45;
   font-size: 12px;
   line-height: normal;
 }
@@ -198,7 +198,7 @@
 
 .empty {
   padding: 28px 16px !important;
-  color: #5d7183;
+  color: #5e5647;
   text-align: center;
 }
 
@@ -214,11 +214,11 @@
   justify-content: space-between;
   gap: 16px;
   padding: 13px 0;
-  border-bottom: 1px solid #e5edf0;
+  border-bottom: 1px solid #f3ecdc;
 }
 
 .readerDetails dt {
-  color: #5d7183;
+  color: #5e5647;
   font-size: 14px;
 }
 
@@ -250,15 +250,15 @@
 
 .primaryButton {
   height: 44px;
-  background: #087f83;
+  background: #1f4a7d;
   color: #fff;
 }
 
 .secondaryButton {
   flex: 0 0 auto;
-  border-color: #d9e5eb;
+  border-color: #e7dcc8;
   background: #fff;
-  color: #17324d;
+  color: #1a2b45;
 }
 
 .error {
@@ -271,7 +271,7 @@
 
 .page a:focus-visible,
 .page button:focus-visible {
-  outline: 3px solid #087f83;
+  outline: 3px solid #1f4a7d;
   outline-offset: 3px;
 }
 

@@ -1,10 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import Icon from './Icon';
+import Tour from './Tour';
 import styles from './Shell.module.css';
 import { activeTabId, screenTitles, sectionHome, sectionOf, sections } from './routes';
 
 const ZOOM_KEY = 'library.largeView';
+const TOUR_KEY = 'library.tourDone.v1';
+
+function tourSeen(): boolean {
+  try { return localStorage.getItem(TOUR_KEY) === '1'; } catch { return true; }
+}
 
 function readLarge(): boolean {
   try { return localStorage.getItem(ZOOM_KEY) === '1'; } catch { return false; }
@@ -16,11 +22,20 @@ export default function Shell({ route, children }: { route: string; children: Re
   const title = screenTitles[route];
   const content = useRef<HTMLDivElement>(null);
   const [large, setLarge] = useState(readLarge);
+  const [tour, setTour] = useState(() => !tourSeen());
+  const tourOpen = useRef(tour);
+  tourOpen.current = tour;
+
+  function closeTour() {
+    try { localStorage.setItem(TOUR_KEY, '1'); } catch { /* הסיור פשוט יופיע שוב */ }
+    setTour(false);
+    content.current?.focus({ preventScroll: true });
+  }
 
   // כותרת הלשונית והמיקוד עוברים עם הניווט, כדי שקורא מסך ומקלדת לא יישארו בעמוד הקודם.
   useEffect(() => {
     document.title = `${title ?? 'מדף'} · מדף`;
-    content.current?.focus({ preventScroll: true });
+    if (!tourOpen.current) content.current?.focus({ preventScroll: true });
     scrollTo(0, 0);
   }, [route, title]);
 
@@ -34,7 +49,7 @@ export default function Shell({ route, children }: { route: string; children: Re
   const daily = sections.filter((s) => !s.utility);
   const utility = sections.filter((s) => s.utility);
   const link = (s: (typeof sections)[number]) => (
-    <a key={s.id} href={sectionHome(s)} aria-current={s.id === section?.id ? 'page' : undefined}>
+    <a key={s.id} href={sectionHome(s)} data-tour={s.id} aria-current={s.id === section?.id ? 'page' : undefined}>
       <Icon name={s.id} />
       <span>{s.label}</span>
     </a>
@@ -45,10 +60,10 @@ export default function Shell({ route, children }: { route: string; children: Re
       <a className={styles.skip} href="#content" onClick={(e) => { e.preventDefault(); content.current?.focus(); }}>
         דילוג לתוכן
       </a>
-      <aside className={styles.sidebar}>
+      <aside className={styles.sidebar} aria-label="מדף">
         <a className={styles.brand} href={sectionHome(sections[0])}>
-          <b className={styles.brandIcon} aria-hidden="true">מ</b>
-          <span>מדף<small>ספריית בית הספר</small></span>
+          <img className={styles.logo} src="/logo.png" alt="" width="46" height="56" />
+          <span>מדף<small>בית יעקב סלונים · בני ברק</small></span>
         </a>
         <nav aria-label="ניווט ראשי" className={styles.nav}>
           {daily.map(link)}
@@ -56,6 +71,10 @@ export default function Shell({ route, children }: { route: string; children: Re
           {utility.map(link)}
         </nav>
         <div className={styles.footer}>
+          <button type="button" className={styles.zoom} onClick={() => setTour(true)}>
+            <Icon name="help" />
+            <span>הדרכה</span>
+          </button>
           <button type="button" className={styles.zoom} aria-pressed={large} onClick={toggleLarge}>
             <Icon name="zoom" />
             <span>{large ? 'תצוגה רגילה' : 'תצוגה גדולה'}</span>
@@ -75,6 +94,7 @@ export default function Shell({ route, children }: { route: string; children: Re
           {children}
         </div>
       </div>
+      {tour && <Tour onClose={closeTour} />}
     </div>
   );
 }

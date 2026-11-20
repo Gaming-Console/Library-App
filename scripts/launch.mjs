@@ -22,7 +22,7 @@ if (built < Math.max(newest('src'), statSync('index.html').mtimeMs)) {
   console.log('בונה את האפליקציה (פעם אחת, כדקה)…');
   if (run(['vite', 'build']).status !== 0) { console.error('הבנייה נכשלה.'); process.exit(1); }
 }
-if (!existsSync('data/library.sqlite') && process.argv.includes('--demo')) run(['tsx', 'scripts/seed-demo.ts']);
+if (!existsSync(process.env.LIBRARY_DB ?? 'data/library.sqlite') && process.argv.includes('--demo')) run(['tsx', 'scripts/seed-demo.ts']);
 
 async function alreadyRunning() {
   try { return (await fetch(`${url}/api/health`)).ok; } catch { return false; }
@@ -38,7 +38,7 @@ if (await alreadyRunning()) { console.log('מדף כבר פועל. פותח את
 let opened = false;
 let stopping = false;
 function start() {
-  const child = spawn(npx, ['tsx', 'server/index.ts'], { stdio: 'inherit', shell: process.platform === 'win32' });
+  const child = spawn(process.execPath, ['--import', 'tsx', 'server/index.ts'], { stdio: 'inherit' });
   const poll = setInterval(async () => {
     if (await alreadyRunning()) { clearInterval(poll); if (!opened) { opened = true; openBrowser(); } }
   }, 500);

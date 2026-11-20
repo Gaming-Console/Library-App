@@ -1,12 +1,14 @@
 :root {
-  --ink: #17324d;
-  --teal: #087f83;
-  --teal-dark: #066568;
-  --mint: #80c8c7;
-  --bg: #edf6f7;
+  --ink: #1a2b45;
+  --teal: #1f4a7d;
+  --teal-dark: #16385f;
+  --mint: #e3b15c;
+  --gold: #c98a2b;
+  --focus: #a8680f;
+  --bg: #faf6ee;
   --surface: #fff;
-  --muted: #566b7e;
-  --line: #d9e5eb;
+  --muted: #5e5647;
+  --line: #e7dcc8;
   --warn: #a65f14;
   --danger: #b42318;
   color-scheme: light;
@@ -36,7 +38,7 @@ a {
 
 /* מיקוד גלוי בכל רכיב אינטראקטיבי, גם בדפים שלא הגדירו אותו. */
 :focus-visible {
-  outline: 3px solid var(--teal);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
   border-radius: 4px;
 }

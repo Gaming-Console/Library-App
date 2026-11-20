@@ -1,10 +1,10 @@
 .page {
-  color: #17324d;
+  color: #1a2b45;
   font: 16px/1.6 Arial, sans-serif;
 }
 
 .back {
-  color: #087f83;
+  color: #1f4a7d;
   text-decoration: none;
 }
 
@@ -12,7 +12,7 @@
 .template:focus-visible,
 .fileLabel:focus-within,
 .importButton:focus-visible {
-  outline: 3px solid #087f83;
+  outline: 3px solid #1f4a7d;
   outline-offset: 3px;
 }
 
@@ -31,7 +31,7 @@
 
 .eyebrow {
   margin: 0;
-  color: #087f83;
+  color: #1f4a7d;
   font-size: 14px;
   font-weight: 700;
 }
@@ -45,7 +45,7 @@
 .upload p,
 .previewHead p {
   margin: 4px 0 0;
-  color: #5d7183;
+  color: #5e5647;
 }
 
 .template,
@@ -54,10 +54,10 @@
   min-height: 44px;
   align-items: center;
   justify-content: center;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 8px;
   background: #fff;
-  color: #17324d;
+  color: #1a2b45;
   padding: 8px 16px;
   text-decoration: none;
   font: inherit;
@@ -66,7 +66,7 @@
 
 .upload,
 .preview {
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 8px;
   background: #fff;
   padding: 20px;
@@ -100,7 +100,7 @@
   min-height: 44px;
   border: 0;
   border-radius: 8px;
-  background: #087f83;
+  background: #1f4a7d;
   color: #fff;
   padding: 8px 20px;
   font: inherit;
@@ -115,7 +115,7 @@
 
 .tableWrap {
   overflow-x: auto;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 6px;
 }
 
@@ -129,13 +129,13 @@
 .tableWrap th,
 .tableWrap td {
   min-height: 52px;
-  border-bottom: 1px solid #d9e5eb;
+  border-bottom: 1px solid #e7dcc8;
   padding: 12px 14px;
   vertical-align: middle;
 }
 
 .tableWrap th {
-  background: #edf6f7;
+  background: #faf6ee;
   font-weight: 700;
 }
 
@@ -154,8 +154,8 @@
 }
 
 .new {
-  background: #e5f4f1;
-  color: #08665f;
+  background: #e8eff8;
+  color: #16385f;
 }
 
 .update {
@@ -178,13 +178,13 @@
 }
 
 .notice {
-  background: #edf6f7;
-  color: #17324d;
+  background: #faf6ee;
+  color: #1a2b45;
 }
 
 .success {
-  background: #e5f4f1;
-  color: #08665f;
+  background: #e8eff8;
+  color: #16385f;
 }
 
 @media (max-width: 680px) {

@@ -1,5 +1,5 @@
 .page {
-  color: #17324d;
+  color: #1a2b45;
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
@@ -15,7 +15,7 @@
 
 .eyebrow {
   margin: 0 0 4px;
-  color: #087f83;
+  color: #1f4a7d;
   font-size: 14px;
   font-weight: 700;
 }
@@ -27,12 +27,12 @@
 
 .intro {
   margin: 8px 0 0;
-  color: #5d7183;
+  color: #5e5647;
 }
 
 .catalogLink {
   flex: 0 0 auto;
-  color: #087f83;
+  color: #1f4a7d;
   font-weight: 700;
   text-decoration: none;
 }
@@ -50,7 +50,7 @@
 .card {
   min-width: 0;
   padding: 24px;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 12px;
   background: #fff;
 }
@@ -62,8 +62,8 @@
   place-items: center;
   margin-bottom: 16px;
   border-radius: 10px;
-  background: #edf6f7;
-  color: #087f83;
+  background: #faf6ee;
+  color: #1f4a7d;
   font-size: 24px;
   font-weight: 700;
 }
@@ -76,7 +76,7 @@
 .description {
   min-height: 52px;
   margin: 8px 0 16px;
-  color: #5d7183;
+  color: #5e5647;
 }
 
 .counts {
@@ -93,13 +93,13 @@
   gap: 8px;
   min-height: 48px;
   padding: 8px 12px;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 8px;
-  background: #f8fbfc;
+  background: #fdfaf4;
 }
 
 .counts dt {
-  color: #5d7183;
+  color: #5e5647;
   font-size: 14px;
 }
 
@@ -121,7 +121,7 @@
 }
 
 .primaryButton {
-  background: #087f83;
+  background: #1f4a7d;
   color: #fff;
 }
 
@@ -148,14 +148,14 @@
   padding: 16px;
   border: 1px dashed #9bb6c1;
   border-radius: 10px;
-  background: #f8fbfc;
+  background: #fdfaf4;
   text-align: center;
   cursor: pointer;
 }
 
 .filePicker:hover {
-  border-color: #087f83;
-  background: #f3fafa;
+  border-color: #1f4a7d;
+  background: #fbf7ef;
 }
 
 .filePicker strong {
@@ -164,12 +164,12 @@
 }
 
 .filePicker span:last-of-type {
-  color: #5d7183;
+  color: #5e5647;
   font-size: 14px;
 }
 
 .uploadIcon {
-  color: #087f83;
+  color: #1f4a7d;
   font-size: 26px;
   line-height: 1;
 }
@@ -185,7 +185,7 @@
 }
 
 .filePicker:focus-within {
-  outline: 3px solid #087f83;
+  outline: 3px solid #1f4a7d;
   outline-offset: 3px;
 }
 
@@ -201,13 +201,13 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  border: 1px solid #b9dcd5;
-  background: #f0f9f6;
+  border: 1px solid #e9d8b2;
+  background: #eef3fa;
   color: #17634e;
 }
 
 .preview span {
-  color: #17324d;
+  color: #1a2b45;
   font-size: 14px;
 }
 
@@ -227,13 +227,13 @@
 .confirmation input {
   width: 20px;
   height: 20px;
-  accent-color: #087f83;
+  accent-color: #1f4a7d;
 }
 
 .hint,
 .empty {
   margin: 12px 0 0;
-  color: #5d7183;
+  color: #5e5647;
   font-size: 14px;
 }
 
@@ -242,7 +242,7 @@
 .success {
   margin: 0 0 16px;
   padding: 12px 16px;
-  border: 1px solid #d9e5eb;
+  border: 1px solid #e7dcc8;
   border-radius: 8px;
   background: #fff;
 }
@@ -254,19 +254,19 @@
 }
 
 .success {
-  border-color: #b9dcd5;
-  background: #f0f9f6;
+  border-color: #e9d8b2;
+  background: #eef3fa;
   color: #17634e;
 }
 
 .footer {
   margin-top: 24px;
-  color: #5d7183;
+  color: #5e5647;
   font-size: 13px;
 }
 
 .page :focus-visible {
-  outline: 3px solid #087f83;
+  outline: 3px solid #1f4a7d;
   outline-offset: 3px;
 }
 
