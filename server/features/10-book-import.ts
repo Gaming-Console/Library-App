@@ -22,7 +22,7 @@ function validateItems(value: unknown): { items?: BookInput[]; message?: string 
     return { message: 'יש לשלוח רשימת ספרים לייבוא' };
   }
   const rawItems = value.items;
-  if (rawItems.length < 1 || rawItems.length > 100) return { message: 'אפשר לייבא בין שורה אחת ל־100 שורות' };
+  if (rawItems.length < 1 || rawItems.length > 1000) return { message: 'אפשר לייבא בין שורה אחת ל־1,000 שורות' };
 
   const items: BookInput[] = [];
   let totalCopies = 0;
@@ -40,7 +40,7 @@ function validateItems(value: unknown): { items?: BookInput[]; message?: string 
       return { message: 'מזהה הספר הקיים אינו תקין' };
     }
     totalCopies += quantity;
-    if (totalCopies > 500) return { message: 'אפשר לייבא עד 500 עותקים בסך הכול' };
+    if (totalCopies > 2000) return { message: 'אפשר לייבא עד 2,000 עותקים בסך הכול' };
     items.push({
       title,
       ageGroup,

@@ -13,9 +13,14 @@ class IntakeError extends Error {
   }
 }
 
-function validateItems(value: unknown): BookInput[] {
-  if (!Array.isArray(value) || value.length < 1 || value.length > 100) {
-    throw new IntakeError(400, 'INVALID_INPUT', 'יש להוסיף בין שורה אחת ל־100 שורות');
+interface Limits { rows: number; copies: number }
+const MANUAL_LIMITS: Limits = { rows: 100, copies: 500 };
+// ייבוא מאקסל של ספרייה שלמה (מאות ספרים) נעשה בטרנזקציה אחת, ולכן מותר לו יותר.
+const BULK_LIMITS: Limits = { rows: 1000, copies: 2000 };
+
+function validateItems(value: unknown, limits: Limits = MANUAL_LIMITS): BookInput[] {
+  if (!Array.isArray(value) || value.length < 1 || value.length > limits.rows) {
+    throw new IntakeError(400, 'INVALID_INPUT', `יש להוסיף בין שורה אחת ל־${limits.rows.toLocaleString('en')} שורות`);
   }
 
   let totalCopies = 0;
@@ -47,14 +52,14 @@ function validateItems(value: unknown): BookInput[] {
     };
   });
 
-  if (totalCopies > 500) {
-    throw new IntakeError(400, 'INVALID_INPUT', 'אפשר ליצור עד 500 עותקים בבקשה אחת');
+  if (totalCopies > limits.copies) {
+    throw new IntakeError(400, 'INVALID_INPUT', `אפשר ליצור עד ${limits.copies.toLocaleString('en')} עותקים בבקשה אחת`);
   }
   return items;
 }
 
-function createBookRecords(database: typeof db, input: unknown) {
-  const items = validateItems(input);
+function createBookRecords(database: typeof db, input: unknown, limits: Limits = MANUAL_LIMITS) {
+  const items = validateItems(input, limits);
   return database.transaction(() => {
       for (const item of items) {
         if (item.targetBookId && !database.prepare('SELECT id FROM books WHERE id = ?').get(item.targetBookId)) {
@@ -91,7 +96,7 @@ function createBookRecords(database: typeof db, input: unknown) {
 }
 
 export function createAddBooks(database: typeof db) {
-  return (input: BookInput[]): string[] => createBookRecords(database, input).copyIds;
+  return (input: BookInput[]): string[] => createBookRecords(database, input, BULK_LIMITS).copyIds;
 }
 
 export const addBooks = createAddBooks(db);

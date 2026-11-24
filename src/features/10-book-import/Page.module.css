@@ -343,3 +343,8 @@
   display: inline-flex;
   align-items: center;
 }
+.notice { display: grid; gap: 12px; margin-bottom: 16px; padding: 16px; border: 1px solid var(--line, #e7dcc8); border-radius: 12px; background: #eef3fa; }
+.notice p { margin: 0; }
+.notice small { color: var(--muted, #5e5647); }
+.ageField { display: grid; gap: 6px; max-width: 240px; font-weight: 700; }
+.ageField input { min-height: 44px; padding: 0 12px; border: 1px solid #d8c9ad; border-radius: 8px; font: inherit; }

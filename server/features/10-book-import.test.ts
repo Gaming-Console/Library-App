@@ -42,11 +42,11 @@ describe('POST /imports/books', () => {
     expect(received).toEqual([[{ title: 'ספר', ageGroup: 'ג–ד', quantity: 3, targetBookId: 'book-1' }]]);
   });
 
-  it('rejects missing fields, fractional quantities, and totals above 500', async () => {
+  it('rejects missing fields, fractional quantities, and totals above 2,000', async () => {
     const invalidBodies = [
       { items: [{ title: 'ספר', ageGroup: 'ג–ד', quantity: 1.5 }] },
       { items: [{ title: '', ageGroup: 'ג–ד', quantity: 1 }] },
-      { items: Array.from({ length: 6 }, () => ({ title: 'ספר', ageGroup: 'ג–ד', quantity: 100 })) },
+      { items: Array.from({ length: 21 }, () => ({ title: 'ספר', ageGroup: 'ג–ד', quantity: 100 })) },
     ];
     for (const body of invalidBodies) {
       const response = await fetch(`${base}/api/imports/books`, {

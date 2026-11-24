@@ -23,15 +23,47 @@ describe('book workbook parsing', () => {
     expect(result.validRows).toEqual([]);
   });
 
-  it('rejects incorrect headers and more than 100 non-empty rows', () => {
+  it('rejects incorrect headers and more than 1,000 non-empty rows', () => {
     expect(parseBookRows([['שם', ...headers.slice(1)], ['ספר', 'א–ב', 1]]).issues[0].row).toBe(1);
-    const result = parseBookRows([headers, ...Array.from({ length: 101 }, () => ['ספר', 'א–ב', 1])]);
-    expect(result.issues).toContainEqual({ row: 102, message: 'אפשר לייבא עד 100 שורות בכל פעם' });
+    const result = parseBookRows([headers, ...Array.from({ length: 1001 }, () => ['ספר', 'א–ב', 1])]);
+    expect(result.issues).toContainEqual({ row: 1002, message: 'אפשר לייבא עד 1,000 שורות בכל פעם' });
   });
 
-  it('enforces the 500-copy total limit', () => {
-    const result = parseBookRows([headers, ...Array.from({ length: 6 }, () => ['ספר', 'א–ב', 100])]);
-    expect(result.issues).toContainEqual({ row: 7, message: 'אפשר לייבא עד 500 עותקים בסך הכול' });
+  it('enforces the 2,000-copy total limit', () => {
+    const result = parseBookRows([headers, ...Array.from({ length: 21 }, () => ['ספר', 'א–ב', 100])]);
+    expect(result.issues).toContainEqual({ row: 22, message: 'אפשר לייבא עד 2,000 עותקים בסך הכול' });
+  });
+});
+
+describe('simple book list (no headers, optional author column)', () => {
+  it('reads titles without headers, defaulting age group and quantity', () => {
+    const result = parseBookRows([['אבוד בארץ העבדים', null], ['אז תצעקו', 'תמר מור']]);
+    expect(result.mode).toBe('list');
+    expect(result.issues).toEqual([]);
+    expect(result.validRows).toEqual([
+      { row: 1, title: 'אבוד בארץ העבדים', ageGroup: 'כללי', quantity: 1 },
+      { row: 2, title: 'אז תצעקו (תמר מור)', ageGroup: 'כללי', quantity: 1 },
+    ]);
+    expect(result.withAuthor).toBe(1);
+  });
+  it('merges repeated titles into extra copies and skips a title header', () => {
+    const result = parseBookRows([['שם ספר'], ['ילדוליס 7'], ['ילדוליס 7'], ['ילדוליס 7'], [''], ['ילדוליס 8']], { defaultAgeGroup: 'ה–ו' });
+    expect(result.validRows).toEqual([
+      { row: 2, title: 'ילדוליס 7', ageGroup: 'ה–ו', quantity: 3 },
+      { row: 6, title: 'ילדוליס 8', ageGroup: 'ה–ו', quantity: 1 },
+    ]);
+    expect(result.merged).toBe(2);
+  });
+  it('requires an age group and accepts a few hundred books at once', () => {
+    expect(parseBookRows([['ספר']], { defaultAgeGroup: ' ' }).issues).toContainEqual({ row: 1, message: 'יש להזין גיל יעד לכל הספרים' });
+    const many = parseBookRows(Array.from({ length: 282 }, (_, i) => [`ספר ${i}`]));
+    expect(many.issues).toEqual([]);
+    expect(many.validRows).toHaveLength(282);
+  });
+  it('still rejects a three-column sheet with wrong headers', () => {
+    const result = parseBookRows([['x', 'y', 'z'], ['ספר', 'א', 1]]);
+    expect(result.mode).toBe('template');
+    expect(result.issues[0].row).toBe(1);
   });
 });
 

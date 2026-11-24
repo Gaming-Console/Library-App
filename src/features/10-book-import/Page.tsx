@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import readXlsxFile from 'read-excel-file';
 import type { BookInput, CatalogItem } from '../../shared/types';
-import { buildBookInputs, parseBookRows, type ParsedBookImport } from './import';
+import { buildBookInputs, DEFAULT_AGE_GROUP, parseBookRows } from './import';
 import styles from './Page.module.css';
 
 type CatalogStatus = 'idle' | 'loading' | 'ready' | 'error';
@@ -24,7 +24,8 @@ function isCatalogItem(value: unknown): value is CatalogItem {
 
 export default function Page() {
   const [fileName, setFileName] = useState('');
-  const [preview, setPreview] = useState<ParsedBookImport | null>(null);
+  const [sheet, setSheet] = useState<unknown[][] | null>(null);
+  const [ageGroup, setAgeGroup] = useState(DEFAULT_AGE_GROUP);
   const [catalog, setCatalog] = useState<CatalogItem[]>([]);
   const [catalogStatus, setCatalogStatus] = useState<CatalogStatus>('idle');
   const [catalogError, setCatalogError] = useState('');
@@ -45,7 +46,7 @@ export default function Page() {
 
     const request = ++requestNumber.current;
     setFileName(file.name);
-    setPreview(null);
+    setSheet(null);
     setCatalog([]);
     setCatalogStatus('idle');
     setCatalogError('');
@@ -62,10 +63,10 @@ export default function Page() {
 
     setIsReading(true);
     try {
-      const parsed = parseBookRows(await readXlsxFile(file));
+      const rawSheet = await readXlsxFile(file);
       if (request !== requestNumber.current) return;
-      setPreview(parsed);
-      if (parsed.rows.length === 0) return;
+      setSheet(rawSheet);
+      if (parseBookRows(rawSheet, { defaultAgeGroup: ageGroup }).rows.length === 0) return;
 
       setCatalogStatus('loading');
       try {
@@ -90,6 +91,7 @@ export default function Page() {
     }
   }
 
+  const preview = useMemo(() => (sheet ? parseBookRows(sheet, { defaultAgeGroup: ageGroup }) : null), [sheet, ageGroup]);
   const validRows = preview?.validRows ?? [];
   const totalCopies = validRows.reduce((sum, row) => sum + row.quantity, 0);
   const decisionResult = catalogStatus === 'ready'
@@ -150,7 +152,7 @@ export default function Page() {
           <span>קובץ ספרים ‎(.xlsx)</span>
           <input type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={chooseFile} disabled={isReading || isSubmitting} />
         </label>
-        <p className={styles.fieldHint}>העמודות הנדרשות: שם ספר, גיל יעד, כמות עותקים. עד 100 שורות ועד 500 עותקים.</p>
+        <p className={styles.fieldHint}>אפשר להעלות את התבנית (שם ספר, גיל יעד, כמות עותקים) או סתם רשימת שמות: עמודה א׳ שם הספר, עמודה ב׳ מחבר (לא חובה). עד 1,000 ספרים בכל פעם.</p>
         {isReading && <p className={styles.status} role="status">קוראת את הקובץ…</p>}
         {fileError && <p className={styles.error} role="alert">{fileError}</p>}
       </section>
@@ -164,6 +166,19 @@ export default function Page() {
             </div>
             <span className={styles.rowCount}>{preview.rows.length} שורות</span>
           </div>
+
+          {preview.mode === 'list' && (
+            <div className={styles.notice}>
+              <p>זיהינו רשימת ספרים פשוטה: {preview.rows.length} ספרים, {totalCopies} עותקים
+                {preview.merged > 0 && <> (שורות כפולות אוחדו ל{preview.merged} עותקים נוספים)</>}.
+                {preview.withAuthor > 0 && <> לספרים שיש להם מחבר, שמו יופיע בסוגריים אחרי השם.</>}</p>
+              <label className={styles.ageField}>
+                <span>גיל יעד לכל הספרים</span>
+                <input value={ageGroup} maxLength={20} onChange={(event) => { setAgeGroup(event.target.value); setDecisions({}); }} disabled={submittedCount !== null} />
+              </label>
+              <small>אפשר לשנות גיל לספר מסוים אחר כך בכרטיס הספר.</small>
+            </div>
+          )}
 
           {preview.issues.length > 0 && (
             <div className={styles.issueList} role="alert">
